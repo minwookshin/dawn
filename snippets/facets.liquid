@@ -23,7 +23,7 @@
   if results.url
     assign results_url = results.url
   else
-    assign terms = results.terms | escape
+    assign terms = results.terms | replace: '&lt;', '<' | replace: '&gt;', '>' | replace: '&quot;', '"' | replace: '&#39;', "'" | replace: '&amp;', '&' | url_encode
     assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
   endif
 -%}
